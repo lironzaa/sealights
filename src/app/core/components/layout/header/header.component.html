@@ -1,0 +1,11 @@
+<header>
+  <mat-toolbar color="primary">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="mr-1 pointer" routerLink="/users/list">Sealights App</span>
+    <span class="spacer"></span>
+    <a *ngFor="let link of links" (click)="activeLink = link" routerLinkActive="active" mat-button
+       routerLink="{{link.path}}">{{link.name}}</a>
+  </mat-toolbar>
+</header>

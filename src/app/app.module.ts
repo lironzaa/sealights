@@ -1,18 +1,23 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CoreModule } from "./core/core.module";
+import { CommonModule } from "@angular/common";
+import { MatGridListModule } from "@angular/material/grid-list";
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule
+    CommonModule,
+    AppRoutingModule,
+    CoreModule,
+    MatGridListModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [ AppComponent ]
 })
-export class AppModule { }
+export class AppModule {
+}
