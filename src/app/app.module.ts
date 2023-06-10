@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from "@angular/common";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from "./core/core.module";
-import { CommonModule } from "@angular/common";
-import { MatGridListModule } from "@angular/material/grid-list";
 
 @NgModule({
   declarations: [
@@ -14,7 +13,6 @@ import { MatGridListModule } from "@angular/material/grid-list";
     CommonModule,
     AppRoutingModule,
     CoreModule,
-    MatGridListModule
   ],
   providers: [],
   bootstrap: [ AppComponent ]
