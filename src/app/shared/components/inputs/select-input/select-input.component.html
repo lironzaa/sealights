@@ -2,7 +2,7 @@
   <ng-container [formGroupName]="index">
     <mat-form-field>
       <mat-label>{{label}}</mat-label>
-      <mat-select (selectionChange)="itemSelected($event.value)" [formControlName]="customFormControlName">
+      <mat-select [formControlName]="customFormControlName">
         <mat-option *ngFor="let item of items" [value]="item">
           {{item.name}}
         </mat-option>

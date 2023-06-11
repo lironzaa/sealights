@@ -8,6 +8,7 @@ import * as fromApp from '../../../../core/store/app.reducer';
 import { selectGetUsers } from "../../store/users.selectors";
 import { TableColumn } from "../../../../shared/interfaces/data-table";
 import { usersTableColumns } from "../../data/users-table-columns";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-users-list',
@@ -18,11 +19,15 @@ export class UsersListComponent implements OnInit {
   usersData$: Observable<UsersState>;
   columns: TableColumn[] = usersTableColumns;
 
-  constructor(private store: Store<fromApp.AppState>) {
+  constructor(private store: Store<fromApp.AppState>, private router: Router) {
     this.usersData$ = store.select(selectGetUsers);
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.store.dispatch(getUsers());
+  }
+
+  navigateToUserForm(): void {
+    this.router.navigate([ 'users/add-user' ]);
   }
 }

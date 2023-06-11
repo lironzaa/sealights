@@ -25,7 +25,15 @@ export const getCitiesByCountry = createAction(
   'GET_CITIES',
   props<{ countryId: number }>()
 );
+
 export const citiesFetched = createAction(
   'CITIES_FETCHED',
   props<{ cities: City[], countryId: number }>()
 );
+
+export const addUser = createAction(
+  'ADD_USER',
+  props<{ user: User }>()
+);
+
+export const userCreated = createAction('USER_CREATED');

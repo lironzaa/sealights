@@ -3,3 +3,7 @@
   [columns]="columns"
   [data]="(usersData$ | async)?.users">
 </app-data-table>
+
+<div class="mt-1">
+  <button (click)="navigateToUserForm()" mat-raised-button color="primary">Add new user</button>
+</div>

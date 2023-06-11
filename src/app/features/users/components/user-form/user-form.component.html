@@ -31,8 +31,7 @@
           [customFormArrayName]="'addresses'"
           [index]="i"
           [label]="'Select country'"
-          [items]="(usersData$ | async)?.countries"
-          (onItemSelected)="itemSelected($event)">
+          [items]="(usersData$ | async)?.countries">
         </app-select-input>
       </div>
       <div fxLayout="row">
@@ -45,7 +44,7 @@
           [items]="address.value.country?.cities">
         </app-select-input>
         <button [disabled]="!address.get('country')?.value" class="align-self-center" mat-raised-button color="accent"
-                type="button" (click)="addCity(address.get('country')?.value)">Add city
+                type="button" (click)="addCity(address.get('country')?.value, i)">Add city
         </button>
       </div>
       <div fxLayout="row">
@@ -57,7 +56,7 @@
         </app-text-input>
       </div>
       <div fxLayout="row">
-        <button class="mb-1" mat-raised-button color="warn" type="button" (click)="removeAddress()">Remove Address
+        <button class="mb-1" mat-raised-button color="warn" type="button" (click)="removeAddress(i)">Remove Address
         </button>
       </div>
     </div>
@@ -69,7 +68,7 @@
   </div>
   <div fxLayout="row">
     <div fxFlex="100">
-      <button mat-raised-button color="primary" type="submit">Save</button>
+      <button [disabled]="!userForm.valid" mat-raised-button color="primary" type="submit">Save</button>
     </div>
   </div>
 </form>

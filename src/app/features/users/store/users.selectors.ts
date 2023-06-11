@@ -11,7 +11,12 @@ export const selectGetUsers = createSelector(
     ...state,
     users: state.users.map(user => ({
       ...user,
-      addressesCount: user.addresses.length
+      addressesCount: user.addresses.length,
+      formattedDate: user.birthdate !== 'NA' ? new Date(user.birthdate).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+      }) : 'NA'
     }))
   })
 );

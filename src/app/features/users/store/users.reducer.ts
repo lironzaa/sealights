@@ -5,14 +5,14 @@ import * as UsersActions from './users.actions';
 
 export interface UsersState {
   users: User[];
-  isLoading: boolean;
   countries: Country[];
+  isLoading: boolean;
 }
 
 const initialState: UsersState = {
   users: [],
   countries: [],
-  isLoading: false,
+  isLoading: false
 };
 
 export const usersReducer = createReducer(
@@ -50,16 +50,35 @@ export const usersReducer = createReducer(
     }
   }),
   on(UsersActions.citiesFetched, (state, action) => {
-    const updatedIndex = state.countries.findIndex(country => country.id === action.countryId);
-    const updatedCountries = [...state.countries];
-    updatedCountries[updatedIndex] = {
-      ...updatedCountries[updatedIndex],
-      cities: action.cities
-    };
+    const fetchedCities = action.cities.map(city => ({
+      ...city,
+      countryId: action.countryId
+    }));
+    const updatedCountries = state.countries.map(country => {
+      if (country.id === action.countryId) {
+        return {
+          ...country,
+          cities: fetchedCities
+        };
+      }
+      return country;
+    });
     return {
       ...state,
       isLoading: false,
       countries: updatedCountries
+    }
+  }),
+  on(UsersActions.addUser, (state) => {
+    return {
+      ...state,
+      isLoading: true,
+    }
+  }),
+  on(UsersActions.userCreated, (state) => {
+    return {
+      ...state,
+      isLoading: false,
     }
   }),
 );

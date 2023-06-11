@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ControlContainer, FormGroupDirective } from "@angular/forms";
 
 @Component({
@@ -12,19 +12,10 @@ import { ControlContainer, FormGroupDirective } from "@angular/forms";
     }
   ]
 })
-export class SelectInputComponent implements OnInit {
+export class SelectInputComponent {
   @Input() customFormControlName: string = '';
   @Input() label: string = '';
   @Input() index!: number;
   @Input() customFormArrayName: string = '';
   @Input() items: any = [];
-  @Output() onItemSelected = new EventEmitter();
-
-  ngOnInit(): void {
-    console.log(this.items)
-  }
-
-  itemSelected(selectedItem: any): void {
-    this.onItemSelected.emit(selectedItem);
-  }
 }
