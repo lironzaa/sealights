@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
+import { Router } from "@angular/router";
 
 import { UsersState } from "../../store/users.reducer";
 import { getUsers } from "../../store/users.actions";
@@ -8,7 +9,6 @@ import * as fromApp from '../../../../core/store/app.reducer';
 import { selectGetUsers } from "../../store/users.selectors";
 import { TableColumn } from "../../../../shared/interfaces/data-table";
 import { usersTableColumns } from "../../data/users-table-columns";
-import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-users-list',

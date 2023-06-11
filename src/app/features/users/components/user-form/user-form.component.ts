@@ -1,27 +1,24 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from "@angular/forms";
 import { Store } from "@ngrx/store";
-import { Observable, Subscription } from "rxjs";
+import { Observable } from "rxjs";
 import { MatDialog } from "@angular/material/dialog";
 
 import * as fromApp from "../../../.././core/store/app.reducer";
 import { emptyFormArrayValidator } from "../../../../shared/validators/empty-form-array-validator";
 import { selectGetUsers } from "../../store/users.selectors";
 import { UsersState } from "../../store/users.reducer";
-import { AddCityDialogComponent } from "../dialogs/add-city-dialog/add-city-dialog.component";
-import { addCity, addUser } from "../../store/users.actions";
-import { Country } from "../../interfaces/User";
+import { addUser } from "../../store/users.actions";
 
 @Component({
   selector: 'app-user-form',
   templateUrl: './user-form.component.html',
   styleUrls: [ './user-form.component.scss' ]
 })
-export class UserFormComponent implements OnInit, OnDestroy {
+export class UserFormComponent implements OnInit {
   userForm!: FormGroup;
   addressesArray!: FormArray;
   usersData$: Observable<UsersState>;
-  private dialogRefSubscription!: Subscription;
 
   constructor(private fb: FormBuilder, private store: Store<fromApp.AppState>,
               public dialog: MatDialog) {
@@ -51,33 +48,7 @@ export class UserFormComponent implements OnInit, OnDestroy {
     this.addressesArray.push(addressGroup);
   }
 
-  removeAddress(index: number): void {
-    this.addressesArray.removeAt(index);
-  }
-
-  addCity(country: Country, index: number): void {
-    console.log(country);
-    const dialogRef = this.dialog.open(AddCityDialogComponent, {
-      data: { title: `Add city to ${ country.name }`, label: 'City name :' },
-    });
-
-    dialogRef.afterClosed().subscribe(cityName => {
-      if (cityName) {
-        this.store.dispatch(addCity({ city: { name: cityName, countryId: country.id } }));
-        const addressesFormArray = this.userForm.get('addresses') as FormArray;
-        const addressFormGroup = addressesFormArray.at(index) as FormGroup;
-        addressFormGroup.get('country')?.patchValue(null);
-        addressFormGroup.get('city')?.patchValue(null);
-      }
-    });
-  }
-
   onSubmitUserForm(): void {
-    console.log(this.userForm);
     this.store.dispatch(addUser({ user: this.userForm.value }));
-  }
-
-  ngOnDestroy(): void {
-    if (this.dialogRefSubscription) this.dialogRefSubscription.unsubscribe();
   }
 }

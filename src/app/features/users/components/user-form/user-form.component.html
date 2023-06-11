@@ -15,52 +15,10 @@
       </app-date-input>
     </div>
   </div>
-  <div fxLayout="row">
-    <div fxFlex="25" *ngFor="let address of addressesArray.controls; let i = index">
-      <div fxLayout="row">
-        <app-text-input
-          [customFormControlName]="'name'"
-          [customFormArrayName]="'addresses'"
-          [label]="'Address Name'"
-          [index]="i">
-        </app-text-input>
-      </div>
-      <div fxLayout="row">
-        <app-select-input
-          [customFormControlName]="'country'"
-          [customFormArrayName]="'addresses'"
-          [index]="i"
-          [label]="'Select country'"
-          [items]="(usersData$ | async)?.countries">
-        </app-select-input>
-      </div>
-      <div fxLayout="row">
-        <app-select-input
-          class="pr-1"
-          [customFormControlName]="'city'"
-          [customFormArrayName]="'addresses'"
-          [index]="i"
-          [label]="'Select city'"
-          [items]="address.value.country?.cities">
-        </app-select-input>
-        <button [disabled]="!address.get('country')?.value" class="align-self-center" mat-raised-button color="accent"
-                type="button" (click)="addCity(address.get('country')?.value, i)">Add city
-        </button>
-      </div>
-      <div fxLayout="row">
-        <app-text-input
-          [customFormControlName]="'street'"
-          [customFormArrayName]="'addresses'"
-          [label]="'Street'"
-          [index]="i">
-        </app-text-input>
-      </div>
-      <div fxLayout="row">
-        <button class="mb-1" mat-raised-button color="warn" type="button" (click)="removeAddress(i)">Remove Address
-        </button>
-      </div>
-    </div>
-  </div>
+  <app-user-address
+    [addressesArray]="addressesArray"
+    [userForm]="userForm"
+  ></app-user-address>
   <div fxLayout="row" class="mb-1">
     <div fxFlex="100">
       <button mat-raised-button color="primary" type="button" (click)="addAddress()">Add Address</button>
