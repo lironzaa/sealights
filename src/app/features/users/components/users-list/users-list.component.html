@@ -1,5 +1,5 @@
-<p>users-list works!</p>
-<div *ngFor="let user of (usersData$ | async)?.users">
-  <p>{{user.id}}</p>
-  <p>{{user.name}}</p>
-</div>
+<p class="main-text p-1">List of people</p>
+<app-data-table
+  [columns]="columns"
+  [data]="(usersData$ | async)?.users">
+</app-data-table>

@@ -1,0 +1,16 @@
+<ng-container *ngIf="!customFormArrayName">
+  <mat-form-field>
+    <mat-label>{{label}}</mat-label>
+    <input matInput [formControlName]="customFormControlName">
+  </mat-form-field>
+</ng-container>
+
+
+<ng-container *ngIf="customFormArrayName" [formArrayName]="customFormArrayName">
+  <ng-container [formGroupName]="index">
+    <mat-form-field>
+      <mat-label>{{label}}</mat-label>
+      <input matInput [formControlName]="customFormControlName">
+    </mat-form-field>
+  </ng-container>
+</ng-container>

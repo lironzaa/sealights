@@ -6,6 +6,8 @@ import { UsersState } from "../../store/users.reducer";
 import { getUsers } from "../../store/users.actions";
 import * as fromApp from '../../../../core/store/app.reducer';
 import { selectGetUsers } from "../../store/users.selectors";
+import { TableColumn } from "../../../../shared/interfaces/data-table";
+import { usersTableColumns } from "../../data/users-table-columns";
 
 @Component({
   selector: 'app-users-list',
@@ -14,6 +16,7 @@ import { selectGetUsers } from "../../store/users.selectors";
 })
 export class UsersListComponent implements OnInit {
   usersData$: Observable<UsersState>;
+  columns: TableColumn[] = usersTableColumns;
 
   constructor(private store: Store<fromApp.AppState>) {
     this.usersData$ = store.select(selectGetUsers);

@@ -7,5 +7,11 @@ export const usersState = (state: AppState) => state.users;
 
 export const selectGetUsers = createSelector(
   usersState,
-  (state: UsersState) => state
+  (state: UsersState) => ({
+    ...state,
+    users: state.users.map(user => ({
+      ...user,
+      addressesCount: user.addresses.length
+    }))
+  })
 );

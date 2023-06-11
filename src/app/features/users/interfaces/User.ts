@@ -2,7 +2,8 @@ export interface User {
   id: number;
   name: string;
   birthdate: string;
-  addresses: Address[]
+  addresses: Address[];
+  addressesCount: number;
 }
 
 export interface Address {
@@ -13,7 +14,7 @@ export interface Address {
 }
 
 export interface City {
-  id: number;
+  id?: number;
   name: string;
   countryId: number;
 }
@@ -22,4 +23,5 @@ export interface City {
 export interface Country {
   id: number;
   name: string;
+  cities: City[];
 }

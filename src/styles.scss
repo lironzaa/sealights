@@ -13,8 +13,27 @@ body {
   cursor: pointer;
 }
 
-//spacing
+// spacing
 
-.mr-1 {
+.p-1 {
+  padding: 1rem !important;
+}
+
+.pr-1 {
   padding-right: 1rem;
+}
+
+.mb-1 {
+  margin-bottom: 1rem;
+}
+
+// text
+.main-text {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+// flex
+.align-self-center {
+  align-self: center;
 }
