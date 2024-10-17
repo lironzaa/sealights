@@ -1,0 +1,8 @@
+<header>
+  <mat-toolbar color="primary">
+    <span class="pr-1 pointer" routerLink="/">Sealights</span>
+    <span class="spacer"></span>
+    <a *ngFor="let link of links" (click)="activeLink = link" routerLinkActive="active" mat-button
+       routerLink="{{link.path}}">{{link.name}}</a>
+  </mat-toolbar>
+</header>

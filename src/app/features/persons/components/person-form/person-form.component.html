@@ -1,0 +1,23 @@
+<form [formGroup]="personForm" (ngSubmit)="onSubmit()">
+  <div class="row mb-3">
+    <div class="col-6">
+      <app-text-input
+        [label]="'Name'"
+        [formControl]="formUtilitiesService.getControl(personForm, 'name')"
+        [name]="'name'"
+        [formName]="'personForm'"
+        [customErrorMessages]="eventFormFormCustomErrorsData().name"
+      />
+    </div>
+    <div class="col-6">
+<!--      <app-date-input-->
+<!--        [label]="'תאריך האירוע'"-->
+<!--        [formControl]="formUtilitiesService.getControl(eventForm, 'date')"-->
+<!--        [name]="'date'"-->
+<!--        [formName]="'eventForm'"-->
+<!--        [minDate]="tomorrowDate()"-->
+<!--        [customErrorMessages]="eventFormFormCustomErrorsData().date"-->
+<!--      />-->
+    </div>
+  </div>
+</form>
