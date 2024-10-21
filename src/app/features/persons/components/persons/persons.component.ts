@@ -6,6 +6,7 @@ import { Person } from '../../interfaces/person-interface';
 import { DataTableConfig } from '../../../../shared/interfaces/data-table-interface';
 import { personsTableConfig } from '../../data/data-table/persons-table-config';
 import { personsFeature } from '../../store/persons.reducer';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-persons',
@@ -15,23 +16,17 @@ import { personsFeature } from '../../store/persons.reducer';
 })
 export class PersonsComponent implements OnInit {
   store = inject(Store);
+  router = inject(Router);
 
   tableConfig = signal<DataTableConfig<Person>>(personsTableConfig);
   persons: Signal<Person[]> = this.store.selectSignal(personsFeature.selectPersons);
   isLoading: Signal<boolean> = this.store.selectSignal(personsFeature.selectIsLoading);
 
-  // personsState$ = new Observable<PersonsState>();
-
   ngOnInit(): void {
     this.getPersons();
-    // this.initStoreSelects();
   }
 
   getPersons(): void {
     this.store.dispatch(getPersons());
   }
-
-  // initStoreSelects(): void {
-  //   this.personsState$ = this.store.select(personsFeature.selectPersonsState);
-  // }
 }

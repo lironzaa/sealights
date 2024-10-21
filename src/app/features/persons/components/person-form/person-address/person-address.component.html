@@ -1,0 +1,49 @@
+<div class="row">
+  @for (addressGroup of addressesArray().controls; track addressGroup.value; let i = $index) {
+    <div class="col-4 mb-3">
+      <app-text-input
+        [label]="'Address name'"
+        [formControl]="formUtilitiesService.getControl(addressGroup,'name')"
+        [name]="'name'"
+        [formName]="'personForm'"
+      />
+      <app-select-input
+        [selectItems]="countries()"
+        [label]="'Country'"
+        [formControl]="formUtilitiesService.getControl(addressGroup,'country')"
+        [name]="'country'"
+        [formName]="'personForm'"
+      />
+      <div class="d-flex gap-3 align-items-center">
+        <app-select-input
+          [selectItems]="getCitiesSignal(addressGroup.get('country')?.value)()"
+          [label]="'City'"
+          [formControl]="formUtilitiesService.getControl(addressGroup,'city')"
+          [name]="'city'"
+          [formName]="'personForm'"
+        />
+        <app-button
+          [color]="'accent'"
+          [text]="'Add City'"
+          [type]="'button'"
+          [isDisabled]="!addressGroup.value['country'] || isLoading()"
+          (buttonClicked)="onOpenCityDialog(addressGroup.value['country'])"
+        />
+      </div>
+      <div class="d-flex flex-column">
+        <app-text-input
+          [label]="'Street'"
+          [formControl]="formUtilitiesService.getControl(addressGroup,'street')"
+          [name]="'street'"
+          [formName]="'personForm'"
+        />
+        <app-button
+          [color]="'warn'"
+          [text]="'Remove Address'"
+          [type]="'button'"
+          (buttonClicked)="removeAddress(i)"
+        />
+      </div>
+    </div>
+  }
+</div>

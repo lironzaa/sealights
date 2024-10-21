@@ -13,10 +13,7 @@ import { ColumnTypeEnum } from '../../../enums/data-table/column-type-enum';
 export class DataTableComponent<T> {
   dataTableConfig = input.required<DataTableConfig<T>>();
   items = input.required({
-    transform: (items: Person[]): DataTableItem[] => {
-      console.log(items);
-      return items as unknown as DataTableItem[];
-    }
+    transform: (items: Person[]): DataTableItem[] => items as unknown as DataTableItem[]
   })
   isLoading = input.required<boolean | undefined>();
   idKey = input('id');

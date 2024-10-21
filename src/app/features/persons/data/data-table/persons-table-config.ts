@@ -25,7 +25,7 @@ export const personsTableConfig: DataTableConfig<Person> = {
     },
     {
       title: 'Birthdate',
-      dataProperty: PersonsTablePropsEnum.birthDate,
+      dataProperty: PersonsTablePropsEnum.birthdate,
       columnType: ColumnTypeEnum.date,
       isSortable: true,
       sortDirection: SortDirectionEnum.none,

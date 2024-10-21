@@ -6,3 +6,10 @@
   >
   </app-data-table>
 </div>
+
+<app-button
+  [color]="'primary'"
+  [text]="'Add new user'"
+  [type]="'button'"
+  (buttonClicked)="router.navigate(['/persons/create'])"
+/>

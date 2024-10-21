@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, forwardRef, input } from '@angular/
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { CustomErrorMessages } from '../error-input/error-messages';
-import { ControlValueAccessorDirective } from '../../directives/input-directive.directive';
+import { ControlValueAccessorDirective } from '../../../directives/input-directive.directive';
 
 @Component({
   selector: 'app-text-input',
@@ -20,8 +20,8 @@ import { ControlValueAccessorDirective } from '../../directives/input-directive.
 export class TextInputComponent<T>
   extends ControlValueAccessorDirective<T> {
   name = input.required<string>();
-  formName = input<string>(''); // required for input with form validation, is used for FormSubmitAttempt
+  formName = input<string>('');
   label = input<string>();
-  type = input<'text' | 'email' | 'password'>('text'); // required for input with form validation, is used for FormSubmitAttempt
+  type = input<'text' | 'email' | 'password'>('text');
   customErrorMessages = input<CustomErrorMessages>({});
 }

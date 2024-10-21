@@ -1,7 +1,7 @@
 export interface Person {
-  id?: number;
+  id: number;
   name: string;
-  birthDate?: string;
+  birthdate: string;
   addresses: Address[];
   addressesCount: number;
 }
@@ -14,7 +14,7 @@ export interface Address {
 }
 
 export interface City {
-  id?: number;
+  id: number;
   name: string;
   countryId: number;
 }
@@ -23,4 +23,11 @@ export interface Country {
   id: number;
   name: string;
   cities: City[];
+}
+
+export type AddressArrayControlValue = {
+  name: string;
+  country: number | null;
+  city?: number | null;
+  street: string;
 }

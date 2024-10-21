@@ -1,0 +1,23 @@
+<form [formGroup]="cityForm" class="d-flex flex-column">
+  <app-text-input
+    [label]="'City name'"
+    [formControl]="formUtilitiesService.getControl(cityForm,'name')"
+    [name]="'name'"
+    [formName]="'cityForm'"
+  />
+  <div class="d-flex justify-content-center gap-3">
+    <app-button
+      [color]="'primary'"
+      [text]="'Add'"
+      [type]="'button'"
+      [isDisabled]="cityForm.invalid"
+      (buttonClicked)="onSubmit.emit(cityForm.value)"
+    />
+    <app-button
+      [color]="'warn'"
+      [text]="'Cancel'"
+      [type]="'button'"
+      (buttonClicked)="onCancel.emit()"
+    />
+  </div>
+</form>

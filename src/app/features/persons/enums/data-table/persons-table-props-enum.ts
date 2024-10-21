@@ -1,6 +1,6 @@
 export enum PersonsTablePropsEnum {
   id = 'id',
   name = 'name',
-  birthDate = 'birthDate',
+  birthdate = 'birthdate',
   addressesCount = 'addressesCount',
 }
